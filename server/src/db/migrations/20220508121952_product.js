@@ -14,8 +14,8 @@ exports.up = function(knex) {
     table.decimal('price').notNullable();
     table.decimal('price_old');
     table.string('description', 512).notNullable();
-    utils.constructForeignKey(table, constants.tableNames.brands);
-    utils.constructForeignKey(table, constants.tableNames.categories);
+    utils.constructForeignKey({table, tableName:constants.tableNames.brands});
+    utils.constructForeignKey({table, tableName:constants.tableNames.categories});
   })
 };
 

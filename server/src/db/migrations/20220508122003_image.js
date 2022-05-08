@@ -13,7 +13,7 @@ exports.up = function(knex) {
         table.boolean('default').defaultTo(false);
         table.string('url', 512).notNullable();
         table.string('alt', 512).notNullable();
-        utils.constructForeignKey(table, utils.tableNames.products);
+        utils.constructForeignKey({table, tableName:constants.tableNames.products});
       })
 };
 /**
