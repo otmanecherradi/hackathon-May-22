@@ -18,11 +18,11 @@ function getForeignKeyField(tableName, idField = 'id') {
 
 /**
  *
- * @param {import("knex").CreateTableBuilder} table
+ * @param {import("knex").Knex.CreateTableBuilder} table
  * @param {String} idField - default to 'id'
  */
 function addDefaultFields(table, idField = 'id') {
-  table.bigIncrements(idField).primary();
+  table.uuid(idField).defaultTo('uuid()').primary();
   table.timestamps(true, true);
   table.timestamp('deleted_at').nullable().defaultTo(null);
 }
@@ -30,11 +30,11 @@ function addDefaultFields(table, idField = 'id') {
 /**
  *
  * @param {Object} args
- * @param {import("knex").CreateTableBuilder} args.table
+ * @param {import("knex").Knex.CreateTableBuilder} args.table
  * @param {String} args.tableName
  * @param {String} args.field - default to 'id'
  * @param {String} args.onDelete - default to 'CASCADE'
- * @returns {import("knex").ColumnBuilder}
+ * @returns {import("knex").Knex.ColumnBuilder}
  */
 function constructForeignKey({
   table,
@@ -43,8 +43,7 @@ function constructForeignKey({
   onDelete = 'CASCADE',
 }) {
   return table
-    .integer(getForeignKeyField(tableName))
-    .unsigned()
+    .uuid(getForeignKeyField(tableName))
     .references(field)
     .inTable(tableName)
     .onDelete(onDelete)
