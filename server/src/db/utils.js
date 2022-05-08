@@ -1,3 +1,5 @@
+const knex = require('knex');
+
 /**
  *
  * @param {String} tableName
@@ -22,7 +24,7 @@ function getForeignKeyField(tableName, idField = 'id') {
  * @param {String} idField - default to 'id'
  */
 function addDefaultFields(table, idField = 'id') {
-  table.uuid(idField).defaultTo('uuid()').primary();
+  table.uuid(idField).defaultTo(knex.raw('UUID()')).primary();
   table.timestamps(true, true);
   table.timestamp('deleted_at').nullable().defaultTo(null);
 }
