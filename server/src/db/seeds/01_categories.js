@@ -5,8 +5,8 @@ const { tableNames } = require('../../db/constants');
  */
 exports.seed = async function (knex) {
   // Deletes ALL existing entries
-  await knex(tableNames.categories).del();
-  await knex(tableNames.categories).insert([
+  await knex(tableNames.categories.TABLE).del();
+  await knex(tableNames.categories.TABLE).insert([
     { name: 'Category 1', slug: 'category-1' },
     { name: 'Category 2', slug: 'category-2' },
     { name: 'Category 2', slug: 'category-3' },

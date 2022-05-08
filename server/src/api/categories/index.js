@@ -1,11 +1,11 @@
 const { Router } = require('express');
 const knex = require('../../db/');
-const { tableNames } = require('../../db/constants');
+const { tables } = require('../../db/constants');
 const router = Router();
 
 router.get('/', async (req, res) => {
   try {
-    const categories = await knex(tableNames.categories);
+    const categories = await knex(tables.categories.NAME);
     res.json(categories);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const categorie = await knex
-      .from(tableNames.categories)
+      .from(tables.categories.NAME)
       .where('id', req.params.id);
     res.json(categorie);
   } catch (error) {
@@ -23,8 +23,8 @@ router.get('/:id', async (req, res) => {
 });
 router.post('/', async (req, res) => {
   try {
-    await knex(tableNames.categories).insert(req.body);
-    const categories = await knex.from(tableNames.categories);
+    await knex(tables.categories.NAME).insert(req.body);
+    const categories = await knex.from(tables.categories.NAME);
     res.json(categories);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -32,10 +32,10 @@ router.post('/', async (req, res) => {
 });
 router.put('/:id', async (req, res) => {
   try {
-    await knex(tableNames.categories)
+    await knex(tables.categories.NAME)
       .where('id', req.params.id)
       .update(req.body);
-    const categories = await knex.from(tableNames.categories);
+    const categories = await knex.from(tables.categories.NAME);
     res.json(categories);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -43,8 +43,8 @@ router.put('/:id', async (req, res) => {
 });
 router.delete('/:id', (req, res) => {
   try {
-    knex(tableNames.categories).where('id', req.params.id).del();
-    const categories = knex.from(tableNames.categories);
+    knex(tables.categories.NAME).where('id', req.params.id).del();
+    const categories = knex.from(tables.categories.NAME);
     res.json(categories);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -63,7 +63,11 @@ router.get('/:slug/products', async (req, res) => {
     } else {
       const products = await knex
         .from('products')
-        .join('categories', 'products.categories_id', 'categories.id')
+        .join(
+          tables.categories.NAME,
+          tables.products.COLUMNS.CATEGORIES_ID,
+          tables.categories.COLUMNS.ID,
+        )
         .where('categories.slug', req.params.slug);
       res.json(products);
     }
