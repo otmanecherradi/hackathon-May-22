@@ -2,7 +2,7 @@ const { Router } = require('express');
 const knex = require('../../db/');
 const { tables } = require('../../db/constants');
 const router = Router();
-
+const categoriesSchema = require('./categoriesSchema');
 router.get('/', async (req, res) => {
   try {
     const categories = await knex(tables.categories.NAME);
@@ -23,6 +23,7 @@ router.get('/:id', async (req, res) => {
 });
 router.post('/', async (req, res) => {
   try {
+    await categoriesSchema.validate(req.body, { abortEarly: false });
     await knex(tables.categories.NAME).insert(req.body);
     const categories = await knex.from(tables.categories.NAME);
     res.json(categories);
@@ -32,6 +33,7 @@ router.post('/', async (req, res) => {
 });
 router.put('/:id', async (req, res) => {
   try {
+    await categoriesSchema.validate(req.body, { abortEarly: false });
     await knex(tables.categories.NAME)
       .where('id', req.params.id)
       .update(req.body);
