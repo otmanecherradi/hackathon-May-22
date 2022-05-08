@@ -4,16 +4,18 @@
  */
 
 const utils = require('../utils');
+const constants = require('../constants');
 
 exports.up = function(knex) {
-  return knex.schema.createTable('products', function(table){
+  return knex.schema.createTable(constants.tableNames.products, function(table){
     utils.addDefaultFields(table);
     table.string('name', 255).notNullable();
     table.string('slug', 512).notNullable();
     table.decimal('price').notNullable();
     table.decimal('price_old');
     table.string('description', 512).notNullable();
-    utils.constructForeignKey(table, 'brands');
+    utils.constructForeignKey(table, utils.tableNames.brands);
+    utils.constructForeignKey(table, utils.tableNames.categories);
   })
 };
 
