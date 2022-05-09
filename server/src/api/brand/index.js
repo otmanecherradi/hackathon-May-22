@@ -13,7 +13,7 @@ let schema = yup.object({
 });
 
 router.get('/', (req, res) => {
-  knex.select().table(constants.tableNames.brands).then(brands=>{
+  knex.select().table(constants.tables.brands.NAME).then(brands=>{
     res.json(brands);
   })
 });
@@ -26,7 +26,7 @@ router.post('/', async(req, res, next) => {
     return res.status(status.HTTP_400_BAD_REQUEST).json({msg:err.message})
   }
   try{
-    await knex(constants.tableNames.brands).insert({name, slug}, 'id');
+    await knex(constants.tables.brands.NAME).insert({name, slug}, 'id');
     res.sendStatus(status.HTTP_200_OK)
   }catch(err){
     res.status(status.HTTP_500_INTERNAL_SERVER_ERROR).json({msg:err.message});
@@ -35,7 +35,7 @@ router.post('/', async(req, res, next) => {
 });
 router.get('/:id', async(req, res) => {
   try{
-    await knex(constants.tableNames.brands).where("id", '=', req.params.id).select();
+    await knex(constants.tables.brands.NAME).where("id", '=', req.params.id).select();
     res.sendStatus(status.HTTP_200_OK);
   }catch(err){
     res.status(status.HTTP_500_INTERNAL_SERVER_ERROR).json({msg:err.message});
@@ -50,7 +50,7 @@ router.put('/:id', async(req, res) => {
     return res.status(status.HTTP_400_BAD_REQUEST).json({msg:err.message})
   }
   try{
-    await knex(constants.tableNames.brands).where("id", '=', req.params.id).update({name, slug});
+    await knex(constants.tables.brands.NAME).where("id", '=', req.params.id).update({name, slug});
     res.sendStatus(status.HTTP_200_OK);
   }catch(err){
     res.status(status.HTTP_500_INTERNAL_SERVER_ERROR).json({msg:err.message});
@@ -58,7 +58,7 @@ router.put('/:id', async(req, res) => {
 });
 router.delete('/:id',async (req, res) => {
   try{
-    await knex(constants.tableNames.brands).where("id", '=', req.params.id).del();
+    await knex(constants.tables.brands.NAME).where("id", '=', req.params.id).del();
     res.sendStatus(status.HTTP_200_OK);
   }catch(err){
     res.status(status.HTTP_500_INTERNAL_SERVER_ERROR).json({msg:err.message});
@@ -66,8 +66,8 @@ router.delete('/:id',async (req, res) => {
 
 });
 router.get('/:slug/products', async(req, res) => {
-  let products = await knex(constants.tableNames.products)
-  .join(constants.tableNames.brands, `${constants.tableNames.products}.${constants.tableNames.brands}_id`, '=', `${constants.tableNames.brands}.id`).select();
+  let products = await knex(constants.tables.products.NAME)
+  .join(constants.tables.brands.NAME, `${constants.tables.products.NAME}.${constants.tables.brands.NAME}_id`, '=', `${constants.tables.brands.NAME}.id`).select();
   res.json({
     products
   });
