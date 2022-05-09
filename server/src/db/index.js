@@ -5,9 +5,9 @@ const knexConfig = require('../../knexfile');
 
 const connectionConfig = knexConfig[env.NODE_ENV];
 
-const connection = knex(connectionConfig);
-
 /**
  * @type {import('knex').Knex}
  */
+const connection = knex(connectionConfig);
+
 module.exports = connection;

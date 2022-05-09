@@ -15,6 +15,7 @@ router.get('/', (req, res) => {
     msg: '💻 Welcome to the API 💻',
   });
 });
+
 router.use('/fn', frontendControllers);
 router.use('/products', productsController);
 router.use('/categories', categoriesController);

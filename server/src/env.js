@@ -12,6 +12,10 @@ const MYSQL_PASSWORD = process.env.MYSQL_PASSWORD;
 const MYSQL_HOST = process.env.MYSQL_HOST;
 const MYSQL_PORT = process.env.MYSQL_PORT;
 
+const ROUNDS = process.env.ROUNDS;
+const JWT_SECRET = process.env.JWT_SECRET;
+const JWT_EXPIRY = process.env.JWT_EXPIRY;
+
 // Add additional variables here
 // const VAR_1 = process.env.VAR_1;
 
@@ -26,6 +30,10 @@ const env = {
   MYSQL_PASSWORD,
   MYSQL_HOST,
   MYSQL_PORT,
+
+  ROUNDS,
+  JWT_SECRET,
+  JWT_EXPIRY,
 
   // VAR_1,
 };
