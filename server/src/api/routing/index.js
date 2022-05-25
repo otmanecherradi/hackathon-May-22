@@ -13,7 +13,7 @@ router.get('/routes', async (req, res, next) => {
       abortEarly: false,
     });
 
-    const { body: reres } = await mbxDirectionService
+    const { body: mbxDirections } = await mbxDirectionService
       .getDirections({
         profile: 'driving-traffic',
         waypoints: [
@@ -32,9 +32,7 @@ router.get('/routes', async (req, res, next) => {
       })
       .send();
 
-    console.log({ reres });
-
-    return res.status(status.HTTP_201_CREATED).json(reres);
+    return res.status(status.HTTP_201_CREATED).json(mbxDirections.routes);
   } catch (err) {
     return next(err);
   }
