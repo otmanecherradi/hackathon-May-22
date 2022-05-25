@@ -1,18 +1,11 @@
-import { useState } from 'react';
-
+import { useState } from "react";
+import Dashboard from "./pages/Dashboard";
 function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type='button' onClick={() => setCount((count) => count + 1)} className='bg-slate-400 p-3'>
-            count is: {count}
-          </button>
-        </p>
-      </header>
+    <div className="App">
+      <Dashboard />
     </div>
   );
 }
