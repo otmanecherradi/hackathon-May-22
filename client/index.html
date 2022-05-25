@@ -1,7 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" class="h-full">
 
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite App</title>
 
+  <link rel="stylesheet" href="./src/styles/tailwind.css" />
+  <link rel="stylesheet" href="./src/styles/main.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
 
 </head>
 <style>
@@ -17,7 +27,7 @@
 </style>
 <body class="h-full">
 
-  <nav class="bg-emerald-600 border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-800">
+  <nav style="background-color: #558924;" class="border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-800">
     <div class="container flex flex-wrap justify-between items-center mx-auto">
       <a href="https://flowbite.com" class="flex items-center">
         <span class="self-center text-xl font-semibold whitespace-nowrap text-white">EcoKernel</span>
@@ -65,10 +75,12 @@
     </div>
   </nav>
   <main id="main">
-    <h4>EcoKernel</h4>
-    <h1>réduire les déchets
-      drastiquement.</h1>
-      <button>Demarer</button>
+    <div style="font-size: 2em; padding-top: 100px" class="text-center text-white w-full md:w-fit mx-5">
+      <h4 style="font-size: 1.5em;">EcoKernel</h4>
+      <h1><span style="font-size: 1.7em; font-weight: bold;">réduire</span> les déchets <br>
+        <span style="font-size: 1.5em;">drastiquement.</span></h1>
+      <button class="bg-white text-emerald-600 px-4 py-1 rounded" style="font-size: .7em;">Demarer</button>
+    </div>
   </main>
 
   <script type="module" src="/src/js/main.js"></script>
