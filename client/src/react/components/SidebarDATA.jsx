@@ -1,26 +1,20 @@
 import React from "react";
 export const SidebarDATA = [
   {
-    title: "Gestion Filieres",
-    path: "/Gestion-Filieres",
+    title: "Overview",
+    path: "/Overview",
     icon: null,
     cName: "nav-text",
   },
   {
-    title: "Gestion Modules",
-    path: "/Gestion-Modules",
+    title: "Data",
+    path: "/Data",
     icon: null,
     cName: "nav-text",
   },
   {
-    title: "Gestion Stagiaires",
-    path: "/Gestion-Stagiaires",
-    icon: null,
-    cName: "nav-text",
-  },
-  {
-    title: "Gestion des Groupes",
-    path: "/Gestion-groupes",
+    title: "Maps",
+    path: "/Maps",
     icon: null,
     cName: "nav-text",
   },

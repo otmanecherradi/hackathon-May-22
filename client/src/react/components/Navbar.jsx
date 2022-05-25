@@ -8,25 +8,35 @@ import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import SideBarDrawer from "../components/SideBarDrawer";
-import authService from "../services/auth.service";
-import { useNavigate } from "react-router-dom";
+import SidebarDrawer from "../components/SidebarDrawer";
+import NavbarSearchbar from "./NavbarSearchbar";
+import { display } from "@mui/system";
+//import { useNavigate } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = (props) => {
   const [sideOpen, setSideOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  const getPageName = () => {
-    return window.location.pathname.split("-")[1];
-  };
   return (
     <>
-      <AppBar position="static" sx={{ backgroundColor: "#263ab9" }}>
-        <Toolbar>
+      <AppBar
+        position="static"
+        sx={{
+          backgroundColor: "#263ab9",
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        <Toolbar
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
           <IconButton
             size="large"
             edge="start"
@@ -39,9 +49,9 @@ const Navbar = () => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            {getPageName()}
-          </Typography>
+          <Box sx={{ flexGrow: 0 }}>
+            <NavbarSearchbar />
+          </Box>
           <Box sx={{ flexGrow: 0 }}>
             <IconButton
               size="large"
@@ -73,7 +83,7 @@ const Navbar = () => {
               <MenuItem
                 onClick={() => {
                   authService.logout();
-                  navigate("/");
+                  //navigate("/");
                   window.location.reload();
                 }}
               >
@@ -83,7 +93,7 @@ const Navbar = () => {
           </Box>
         </Toolbar>
 
-        <SideBarDrawer
+        <SidebarDrawer
           open={sideOpen}
           close={() => {
             setSideOpen((state) => !state);
