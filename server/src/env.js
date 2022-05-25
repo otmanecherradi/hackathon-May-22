@@ -19,6 +19,8 @@ const JWT_REFRESH_EXPIRY = process.env.JWT_REFRESH_EXPIRY;
 const JWT_DATA_IV = process.env.JWT_DATA_IV;
 const JWT_DATA_SECRET = process.env.JWT_DATA_SECRET;
 
+const MAPBOX_ACCESS_TOKEN = process.env.MAPBOX_ACCESS_TOKEN;
+
 // Add additional variables here
 // const VAR_1 = process.env.VAR_1;
 
@@ -40,6 +42,8 @@ const env = {
   JWT_REFRESH_EXPIRY,
   JWT_DATA_IV,
   JWT_DATA_SECRET,
+
+  MAPBOX_ACCESS_TOKEN,
 
   // VAR_1,
 };
