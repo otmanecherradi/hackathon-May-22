@@ -30,17 +30,14 @@ exports.up = async function (knex) {
     dbUtils
       .constructForeignKey({ table, tableName: tableNames.COMPANIES })
       .notNullable();
+
+    table.string('address').notNullable();
+
+    table.decimal('lat', 20, 10).notNullable();
+    table.decimal('lng', 20, 10).notNullable();
   });
 
-  await knex.schema.createTable(tableNames.USER_LOCATIONS, (table) => {
-    dbUtils.addDefaultFields(table);
-
-    dbUtils.constructForeignKey({ table, tableName: tableNames.LOCATIONS });
-    dbUtils.constructForeignKey({ table, tableName: tableNames.USERS });
-
-    table.string('type').notNullable();
-    table.text('description').nullable();
-  });
+  
 };
 
 /**
