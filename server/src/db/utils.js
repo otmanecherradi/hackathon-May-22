@@ -10,11 +10,10 @@ function getIdField(tableName, idField = 'id') {
 /**
  *
  * @param {string} tableName
- * @param {number} l
  * @param {string} idField
  */
-function getForeignKeyField(tableName, l, idField = 'id') {
-  return `${tableName.slice(0, tableName.length - l)}_${idField}`;
+function getForeignKeyField(tableName, idField = 'id') {
+  return `${tableName}_${idField}`;
 }
 
 /**
@@ -33,19 +32,17 @@ function addDefaultFields(table, idField = 'id') {
  * @param {object} args
  * @param {import("knex").Knex.CreateTableBuilder} args.table
  * @param {string} args.tableName
- * @param {number} args.len
  * @param {string} args.field - default to 'id'
  * @param {string} args.onDelete - default to 'CASCADE'
  */
 function constructForeignKey({
   table,
   tableName,
-  len,
   field = 'id',
   onDelete = 'CASCADE',
 }) {
   return table
-    .bigInteger(getForeignKeyField(tableName, len))
+    .bigInteger(getForeignKeyField(tableName))
     .unsigned()
     .references(field)
     .inTable(tableName)

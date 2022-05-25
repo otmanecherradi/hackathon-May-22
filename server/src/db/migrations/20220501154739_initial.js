@@ -7,27 +7,18 @@ const dbUtils = require('../utils');
  * @returns { Promise<void> }
  */
 exports.up = async function (knex) {
-  await knex.schema.createTable(tableNames.roles, (table) => {
+  await knex.schema.createTable(tableNames.FIELDS, (table) => {
     dbUtils.addDefaultFields(table);
 
     table.string('name').unique().notNullable();
     table.text('description').nullable();
   });
 
-  await knex.schema.createTable(tableNames.users, (table) => {
+  await knex.schema.createTable(tableNames.TRACKING_TYPES, (table) => {
     dbUtils.addDefaultFields(table);
 
-    table.string('full_name').nullable();
-    table.string('email').unique().notNullable();
-    table.string('password').notNullable();
-
-    dbUtils
-      .constructForeignKey({
-        table,
-        tableName: tableNames.roles,
-        len: 1,
-      })
-      .notNullable();
+    table.string('name').unique().notNullable();
+    table.text('description').nullable();
   });
 };
 
@@ -36,6 +27,6 @@ exports.up = async function (knex) {
  * @returns { Promise<void> }
  */
 exports.down = async function (knex) {
-  await knex.schema.dropTable(tableNames.users);
-  await knex.schema.dropTable(tableNames.roles);
+  await knex.schema.dropTable(tableNames.FIELDS);
+  await knex.schema.dropTable(tableNames.TRACKING_TYPES);
 };
