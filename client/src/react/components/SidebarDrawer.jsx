@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { SidebarDATA } from "./SidebarDATA";
 
-function SidebarDrawer() {
+function SidebarDrawer(props) {
   return (
     <>
       <Drawer
