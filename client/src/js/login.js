@@ -14,7 +14,7 @@ async function login(email, password) {
     localStorage.setItem('accessToken', data.accessToken);
     localStorage.setItem('refreshToken', data.refreshToken);
 
-    window.location.href = '/index.html';
+    window.location.href = '/dashboard.html';
   } catch (err) {
     console.error(err);
   }

@@ -57,11 +57,11 @@ async function getRoutes(data) {
       geometries: 'geojson',
       waypoints: [
         {
-          coordinates: [data.departure.lat, data.departure.lng],
+          coordinates: [data.departure.lng, data.departure.lat],
           approach: 'unrestricted',
         },
         {
-          coordinates: [data.arrival.lat, data.arrival.lng],
+          coordinates: [data.arrival.lng, data.arrival.lat],
           approach: 'unrestricted',
         },
       ],
@@ -120,7 +120,7 @@ ${(route.distance / 1000).toFixed(2)} km / ${(route.duration / 60).toFixed(2)} m
           'line-cap': 'round',
         },
         paint: {
-          'line-color': '#888',
+          'line-color': idx === 0 ? '#48bb78' : idx === 1 ? '#ecc94b' : '#f56565',
           'line-width': 8,
         },
       });

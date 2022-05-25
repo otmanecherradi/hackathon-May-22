@@ -34,7 +34,7 @@ router.post('/signup', async (req, res, next) => {
       full_name: validatedData.fullName,
       email: validatedData.email,
       password: hashedPassword,
-      role_id: 2,
+      // role_id: 2,
     };
 
     const [id] = await createNewUser(newUser).returning('id');

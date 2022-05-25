@@ -11,7 +11,7 @@ const env = require('../../env');
  * @param {string} email
  */
 function getUserByEmail(email) {
-  return db(tableNames.users).where('email', '=', email).first();
+  return db(tableNames.USERS).where('email', '=', email).first();
 }
 
 /**
@@ -19,7 +19,7 @@ function getUserByEmail(email) {
  * @param {string} userId
  */
 function getUserById(userId) {
-  return db(tableNames.users).where('id', '=', userId).first();
+  return db(tableNames.USERS).where('id', '=', userId).first();
 }
 
 /**
@@ -47,7 +47,7 @@ function checkPassword(password, hashedPassword) {
  * @param {string} user.password
  */
 function createNewUser(user) {
-  return db(tableNames.users).insert(user);
+  return db(tableNames.USERS).insert(user);
 }
 
 function signAccessToken(payload) {
