@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "eslint": "^8.14.0",
-    "nodemon": "^2.0.16"
+    "nodemon": "^2.0.20"
   },
   "author": "Otmane <cherradiosman@gmail.com> (https://otmane.netlify.app/)"
 }
